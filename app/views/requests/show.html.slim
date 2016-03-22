@@ -1,0 +1,13 @@
+h1 Vacancy requests
+
+.row
+  .col-sm-3
+    ul.nav.nav-pills.nav-stacked
+      - @requests.each do |request|
+        li role="presentation" class=is_active_request?(request)
+          = link_to request.vacancy.title, request_path(request)
+
+  .col-sm-9
+    .container
+      h2
+        = @current_request.vacancy.title

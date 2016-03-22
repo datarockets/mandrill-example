@@ -1,0 +1,8 @@
+h1
+  = @vacancy.title
+
+= @vacancy.user.email
+
+p
+  - if current_user.present? && current_user.applicant? && !@vacancy.has_request?(current_user)
+    = link_to "Apply", vacancy_request_path(@vacancy), method: :post, class: 'btn btn-primary'

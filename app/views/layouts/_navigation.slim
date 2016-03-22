@@ -1,0 +1,35 @@
+nav.navbar.navbar-inverse
+  .container-fluid
+    .navbar-header
+      = link_to "Mailboxer example", '', class: "navbar-brand"
+
+    ul.nav.navbar-nav
+      li class="#{is_active_menu_item?(root_path)}"
+        = link_to "Vacancies list", root_path
+
+      - if current_user.present?
+        - if current_user.employer?
+          li class="#{is_active_menu_item?(employer_requests_path)}"
+            = link_to "Requests", employer_requests_path
+
+          li class="#{is_active_menu_item?(new_vacancy_path)}"
+            = link_to "Create vacancy", new_vacancy_path
+
+        - else
+          li class="#{is_active_menu_item?(requests_path)}"
+            = link_to "Requests", requests_path
+
+    ul.nav.navbar-nav.navbar-right
+      - if user_signed_in?
+        li
+          = link_to current_user.email, ''
+
+        li
+          = link_to "Sign Out", destroy_user_session_path, method: :delete
+
+      - else
+        li class="#{is_active_menu_item?(new_user_session_path)}"
+          = link_to "Sign In", new_user_session_path
+
+        li class="#{is_active_menu_item?(new_user_registration_path)}"
+          = link_to "Sign Up", new_user_registration_path
