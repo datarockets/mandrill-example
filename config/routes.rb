@@ -5,10 +5,14 @@ Rails.application.routes.draw do
     resource :request, only: :create
   end
 
-  resources :requests, only: [:index, :show]
+  resources :requests, only: [:index, :show] do
+    resources :messages, only: [:create]
+  end
 
   namespace :employer do
-    resources :requests, only: [:index, :show]
+    resources :requests, only: [:index, :show] do
+      resources :messages, only: [:create]
+    end
   end
 
   root 'vacancies#index'

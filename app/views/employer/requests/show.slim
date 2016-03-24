@@ -21,3 +21,15 @@ h1 Vacancy requests
         b Applicant:
 
         = @current_request.user.email
+
+      - @current_request.conversation.messages.each do |message|
+        b
+          = message.sender.mailboxer_email(message)
+
+        p
+          = message.body
+
+      = simple_form_for :message, url: employer_request_messages_path(@current_request), method: :post do |f|
+        = f.input :body, as: :text
+
+        = f.submit "Send"
