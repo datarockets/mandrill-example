@@ -12,6 +12,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise-bootstrap-views'
 gem 'enumerize'
 gem 'simple_form'
+gem 'mailboxer'
 
 group :development, :test do
   gem 'pry-byebug'
